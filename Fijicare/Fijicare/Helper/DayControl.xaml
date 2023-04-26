@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             x:Class="Fijicare.Helper.DayControl">
+    <ContentView.Resources>
+        <Style x:Key="dayFrame" TargetType="Frame">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HeightRequest"  Value="30"/>
+            <Setter Property="HasShadow" Value="False"/>
+            <Setter Property="BorderColor" Value="Transparent"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+             
+          </Style>
+    </ContentView.Resources>
+    <ContentView.Content>
+         
+             <Frame x:Name="frame" Padding="0" VerticalOptions="Start" HorizontalOptions="Start"
+                    BackgroundColor="Transparent" 
+                    HeightRequest="34" WidthRequest="34" CornerRadius="17"
+                   BorderColor="Transparent"  HasShadow="False">
+          <Label x:Name="label"  HorizontalOptions="Center" VerticalOptions="Center" FontSize="14"
+                  FontAttributes="Bold"
+                  TextColor="Black" Text="23"/>
+             
+        </Frame>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="PolicyBenifitP"
+             x:Class="Fijicare.ViewPage.PolicyBenifit">
+<ContentPage.Padding>  
+  
+        <OnPlatform x:TypeArguments="Thickness"  
+                    iOS="0,20,0,0"  
+                    Android="0,0,0,0">  
+        </OnPlatform>  
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <Grid ColumnSpacing="0" VerticalOptions="Fill" 
+                  HorizontalOptions="Fill" BackgroundColor="#c8cac9"
+                RowSpacing="0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+               <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid VerticalOptions="Fill" BackgroundColor="#00AF7A" HorizontalOptions="FillAndExpand">
+                <!--<Image Source="head_back.png" IsVisible="False"  Aspect="Fill"/>-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Image HorizontalOptions="Center" Grid.Column="0"  VerticalOptions="Center"
+                       WidthRequest="30" HeightRequest="30" Source="Back_Arrow.png" Aspect="AspectFit">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer  Command="{Binding BackCommand}"  />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+
+                    <Image HorizontalOptions="Center" Grid.Column="2" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="Notification_Bell.png" Aspect="AspectFit">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NotificationCommand }"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Policy Benefit" Grid.Column="1" TextColor="#474747" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="Small" />
+                    <Image HorizontalOptions="Center" Grid.Column="3" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="powerOff.png" Aspect="AspectFit">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LogoutButtonCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                </Grid>
+            </Grid>
+
+
+            <ListView Grid.Row="1" RowHeight="190" SeparatorVisibility="None" BackgroundColor="#c8cac9" ItemsSource="{Binding HealthPoliciesBenefit, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame BackgroundColor="White" Margin="5" Padding="0">
+                                <Grid  BackgroundColor="White"   VerticalOptions="Fill" RowSpacing="0" HorizontalOptions="Fill" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="1"/>
+
+                                    </Grid.RowDefinitions>
+
+
+                                    <Label Grid.Row="0" Grid.Column="0" Margin="10,5,0,0" Text="Name" HorizontalOptions="Start" FontSize="Small" TextColor="#1d1d1d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Row="2" Grid.Column="0" Margin="10,5,0,0" Text="Benefit" HorizontalOptions="Start" FontSize="Small" TextColor="#1d1d1d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Row="4" Grid.Column="0" Margin="10,5,0,0" Text="Limit Type" HorizontalOptions="Start" FontSize="Small" TextColor="#1d1d1d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Row="6" Grid.Column="0" Margin="10,5,0,0" Text="Limit " HorizontalOptions="Start" FontSize="Small" TextColor="#1d1d1d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+
+                                    <Label Grid.Row="8" Grid.Column="0" Margin="10,5,0,0" Text="Balance " HorizontalOptions="Start" FontSize="Small" TextColor="#1d1d1d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+
+
+
+                                    <Label Grid.Row="0" Grid.Column="1" Margin="10,5,0,0" Text="{Binding Insured_Nm}" HorizontalOptions="Start" FontSize="Small" TextColor="#1d1d1d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Margin="10,5,0,0" Text="{Binding Cover_Nm}" HorizontalOptions="Start" FontSize="Small" TextColor="#1d1d1d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Row="4" Grid.Column="1" Margin="10,5,0,0" Text="{Binding Limit_Type}" HorizontalOptions="Start" FontSize="Small" TextColor="#1d1d1d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Row="6" Grid.Column="1" Margin="10,5,0,0" Text="{Binding Cover_Limit}" HorizontalOptions="Start" FontSize="Small" TextColor="#1d1d1d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+
+                                    <Label Grid.Row="8" Grid.Column="1" Margin="10,5,0,0" Text="{Binding Balance_Amt}" HorizontalOptions="Start" FontSize="Small" TextColor="#1d1d1d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+
+
+
+                                    <!--<Image Margin="0,0,15,0" Grid.Column="1" Aspect="AspectFill" Source="View_Eye.png" HeightRequest="40" WidthRequest="40">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference PolicyBenifitP},Path=BindingContext.InsuredCommand}" CommandParameter="{Binding Policy_Id}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>-->
+                                    
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                        
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid Grid.Row="2" RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00AF7A"   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Padding="0">
+
+                <Grid.ColumnDefinitions>
+                       
+                        <ColumnDefinition Width="*"/>
+                         
+                        <ColumnDefinition Width="*"/>
+                         
+                         <ColumnDefinition Width="*"/>
+                        
+                         <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                     <Image HorizontalOptions="Center" Grid.Column="0" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Home" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Home"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                <Label Text="Home" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="0" VerticalOptions="Start" Margin="0,0,0,5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Home"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                            
+                    <Image HorizontalOptions="Center" Grid.Column="1" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Pharmacy" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="PHARMACY"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                <Label Text="PHARMACY" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="1" VerticalOptions="Start" Margin="0,0,0,5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="PHARMACY"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                    <Image HorizontalOptions="Center" Grid.Column="2" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Doctor" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="DOCTORS"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                <Label Text="DOCTORS" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="2" VerticalOptions="Start" Margin="0,0,0,5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="DOCTORS"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                       <Image HorizontalOptions="Center" Grid.Column="3" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="IcFEmergency" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="EMERGENCY"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                <Label Text="EMERGENCY" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="3" VerticalOptions="Start" Margin="0,0,0,5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="EMERGENCY"/>
+                    </Label.GestureRecognizers>
+                </Label>  
+            </Grid>
+
+
+
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

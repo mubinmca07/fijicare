@@ -1,0 +1,170 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.53.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer" Version="20.3.0.49" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.Auth" Version="1.7.0" />
+    <PackageReference Include="Xamarin.Auth.XamarinForms" Version="1.7.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Utility\Converters\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ViewPage\Dashboardpage_old.xaml.cs">
+      <DependentUpon>Dashboardpage_old.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="FlyoutPage1Detail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ViewPage\dashboard\Dashboard.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ViewPage\dashboard\DashboardDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ViewPage\dashboard\DashboardFlyout.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\CheckBox\CheckBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\HeaderPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Helper\DayControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\ActivityPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\Activity\CaloriesActivity.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\Activity\DistancePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\Activity\HeartPointPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\Activity\StepPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\Dashboardpage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\DataPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\DoctorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\EmergencyContacts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\EscaltionMatrixPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\FitDashBoard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\FitMainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\ForgotPasswordPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\GarageSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\HealthClaimPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\HelpPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\HospitalsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\MainDoctor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\MemberBenifitPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\MemberDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\MotorGaragePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\NotificationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\PdfViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\PharmecyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\PolicyBenifit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\PolicyDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\PolicyListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\ProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\ReSetPasswordPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\ResistrationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\SearchHospitalpage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\UploadDocPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewPage\WelcomepPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+</Project>

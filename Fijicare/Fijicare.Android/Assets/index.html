@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Stroked Gauge</title>
+
+    <link href="../../assets/styles.css" rel="stylesheet" />
+
+    <style>
+
+        #chart {
+            padding: 0;
+            max-width: 650px;
+            margin: 35px auto;
+        }
+    </style>
+
+    <script>window.Promise ||
+            document.write(
+                '<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js" ><\/script>'
+            )
+        window.Promise ||
+            document.write(
+                '<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>'
+            )
+        window.Promise ||
+            document.write(
+                '<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>'
+            )</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>function DrawChart(val, type) {
+
+            var per = 0;
+            if (type == "Step Count") {
+                per = (val * 100) / 10000;
+                per = per > 100 ? 100 : per;
+                per = per.toFixed(2);
+                type = val + " Steps move";
+            }
+            else if (type == "Calories") {
+                per = (val * 100) / 2500;
+
+                console.log(per);
+                per = per > 100 ? 100 : per;
+                console.log('after');
+                console.log(per);
+                per = per.toFixed(2);
+                type = val + " kcal Cal burn";
+            }
+            else if (type == "Heart point") {
+                per = (val * 100) / 22;
+                per = per > 100 ? 100 : per;
+                per = per.toFixed(2);
+                type = val + " Heart point";
+            }
+            else if (type == "Distance") {
+                per = (val * 100) / 8;
+                per = per > 100 ? 100 : per;
+                per = per.toFixed(2);
+                type = val + " Km Distance move";
+            }
+    if (per == 100) per = 100;
+    //else if (per == 0) per = 0;
+            var options = {
+                series: [per],
+                chart: {
+                    
+                    type: 'radialBar',
+                    offsetY: -10
+                },
+                plotOptions: {
+                    radialBar: {
+                        startAngle: -135,
+                        endAngle: 135,
+                        dataLabels: {
+                            name: {
+                                fontSize: '16px',
+                                color: undefined,
+                                offsetY: 120
+                            },
+                            value: {
+                                offsetY: 75,
+                                fontSize: '22px',
+                                color: undefined,
+                                formatter: function (val) {
+                                    return val + "%";
+                                }
+                            }
+                        }
+                    }
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        shadeIntensity: 0.15,
+                        inverseColors: false,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 50, 65, 91]
+                    },
+                },
+                stroke: {
+                    dashArray: 0
+                },
+                labels: [type],
+            };
+    var elem = document.getElementById("chart");
+    elem.parentNode.removeChild(elem);
+    var elem = document.createElement('div');
+    elem.id = "chart";
+    document.body.appendChild(elem);
+    var chart = new ApexCharts(document.getElementById("chart"), options);
+    chart.render();
+            //var chart = new ApexCharts(document.querySelector("#chart"), options);
+            //chart.render();
+        }</script>
+
+</head>
+
+<body>
+    <div id="chart"></div>
+</body>
+
+
+</html>

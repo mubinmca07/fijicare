@@ -1,0 +1,180 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            
+              NavigationPage.HasNavigationBar="False"
+             mc:Ignorable="d"
+             x:Class="Fijicare.ViewPage.UploadDocPage">
+    <ContentPage.Padding>
+
+        <OnPlatform x:TypeArguments="Thickness"  
+                    iOS="0,20,0,0"  
+                    Android="0,0,0,0">
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <Grid>
+            <Grid ColumnSpacing="0" VerticalOptions="Fill" 
+                  HorizontalOptions="Fill" BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>                    
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid VerticalOptions="Fill" BackgroundColor="#00AF7A"  HorizontalOptions="FillAndExpand">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Image HorizontalOptions="Center" Grid.Column="0"  VerticalOptions="Center"
+                       WidthRequest="30" HeightRequest="30" Source="Back_Arrow.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding BackCommand}"  />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+
+                        <Image HorizontalOptions="Center" Grid.Column="2" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="Notification_Bell.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NotificationCommand }"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="{Binding PageName}" Grid.Column="1" TextColor="#474747" 
+                           HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="Small" />
+                        <Image HorizontalOptions="Center" Grid.Column="3" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="powerOff.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutButtonCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="1"  Padding="0" ColumnSpacing="0" VerticalOptions="Fill"  Margin="0"
+                  HorizontalOptions="Fill" BackgroundColor="#fafafa"
+                RowSpacing="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+
+
+
+
+                    <ListView  Grid.Row="0" RowHeight="80"  Margin="0,10,0,10" BackgroundColor="Transparent" IsVisible="{Binding IsVisible}" SeparatorVisibility="None" ItemsSource="{Binding DocList, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+
+                                    <Grid  BackgroundColor="White"   VerticalOptions="Fill" RowSpacing="0" HorizontalOptions="Fill" Margin="15,0,10,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="2"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="{Binding ImagePath}" HeightRequest="50" WidthRequest="50" Aspect="AspectFit"/>
+                                        <Label Grid.Column="1" Text="{Binding ImageName}"     />
+                                        <Image HorizontalOptions="Center" Grid.Column="2" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="right" Aspect="AspectFit" IsVisible="{Binding IsUploadVisible}"/>
+                                        <!--  <Label Grid.Column="2" Text="Y"  IsVisible="{Binding IsUploadVisible}"   />
+                                        <Label Grid.Column="3" Text="N" IsVisible="{Binding  IsUploadFailed}"     />-->
+                                        <Image HorizontalOptions="Center" Grid.Column="3" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="wrong" Aspect="AspectFit" IsVisible="{Binding IsUploadFailed}"/>
+                                        <BoxView Grid.Row="1" Grid.ColumnSpan="4" BackgroundColor="LightGray"></BoxView>
+
+                                    </Grid>
+
+                                </ViewCell>
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+
+                    <Grid x:Name="stalaout"  Grid.Row="0" RowSpacing="25"  IsVisible="{Binding IsStackLayoutVisible }"
+                          HorizontalOptions="Center" VerticalOptions="Center"
+                          BackgroundColor="Transparent">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Source="SelectDocument">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BrowseCommand}"  CommandParameter="select" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Image   Source="TakePhoto" Grid.Row="1" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding TakePhotoCommand}" CommandParameter="Upload"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        
+                        <Image   Source="UploadDocument" Grid.Row="2">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding UploadCommand}" CommandParameter="Upload"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                       
+
+
+                    </Grid>
+
+                    <Grid HeightRequest="85" Grid.Row="1" IsVisible="{Binding IsGridVisible }">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image  Grid.Column="0" Source="SelectDocument" Aspect="AspectFit" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BrowseCommand}"  CommandParameter="select" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Image   Source="TakePhoto" Aspect="AspectFit"  Grid.Column="1" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding TakePhotoCommand}" CommandParameter="Upload"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Image   Source="UploadDocument" Aspect="AspectFit" Grid.Column="2"  >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding UploadCommand}" CommandParameter="Upload"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                
+                
+                
+                
+                </Grid>
+
+
+            </Grid>
+            <Grid IsVisible="{Binding IsProcessing,Mode=TwoWay}"  BackgroundColor="Black" Opacity=".5">
+                <ActivityIndicator  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0" HeightRequest="50" WidthRequest="50"
+                           IsVisible="{Binding IsProcessing,Mode=TwoWay}"
+                           IsRunning="{Binding IsProcessing,Mode=TwoWay}"
+                           Color="#00AF7A" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              NavigationPage.HasNavigationBar="False"
+             x:Class="Fijicare.ViewPage.DataPage">
+    <ContentPage.Content>
+           
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+            <Grid VerticalOptions="Fill" BackgroundColor="#00AF7A"  HorizontalOptions="FillAndExpand">
+                    <!--<Image IsVisible="False" Source="head_back.png"  Aspect="Fill"/>-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Image HorizontalOptions="Center" Grid.Column="0"  VerticalOptions="Center"
+                       WidthRequest="30" HeightRequest="30" Source="Back_Arrow.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding BackCommand}"  />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+
+                        <Image HorizontalOptions="Center" Grid.Column="2" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="Notification_Bell.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NotificationCommand }"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="{Binding PageName}" Grid.Column="1"
+                               TextColor="#474747" HorizontalOptions="StartAndExpand" VerticalOptions="Center" 
+                               FontSize="Medium" />
+                        <Image HorizontalOptions="Center" Grid.Column="3" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="powerOff.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutButtonCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </Grid>
+                </Grid>
+
+            
+
+
+         
+             <Grid Grid.Row="1" RowDefinitions="10,50,*">
+        <Label x:Name="step"/>
+        <Button x:Name="myBtn" Grid.Row="1" Text="Step counter" Clicked="StepCounter_Clicked"/>
+        <CollectionView Grid.Row="2" x:Name="list" VerticalScrollBarVisibility="Always">
+            
+            <CollectionView.ItemTemplate>
+                
+                <DataTemplate>
+                    <Grid HeightRequest="30" Margin="10,0" ColumnSpacing="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="45"/>
+                             <ColumnDefinition Width="70"/>
+                             <ColumnDefinition Width="100"/>
+                             <ColumnDefinition Width="*"/>
+                             <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <Label HorizontalOptions="Center" Text="{Binding ID}"/>
+                         <Label Grid.Column="1"  HorizontalTextAlignment="End" Text="{Binding DailySteps}"/>
+                        <Label Grid.Column="2" HorizontalTextAlignment="Center" Text="{Binding StepSinceReboot}"/>
+                        <Label Grid.Column="3" HorizontalTextAlignment="Center" Text="{Binding CreateDate}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+           
+            <Grid   Grid.Row="2"  IsVisible="{Binding IsBusy}"
+                    BackgroundColor="Transparent" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand"   >
+                    <ActivityIndicator   IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="Teal"
+                                         HorizontalOptions="Center" VerticalOptions="Center"
+                                         Margin="0"
+                              />
+                </Grid>
+        </Grid>  
+
+
+
+       
+    </ContentPage.Content>
+</ContentPage>

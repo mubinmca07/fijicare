@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:Converter="clr-namespace:Fijicare.Converters"
+             x:Name="Policylst"
+             x:Class="Fijicare.ViewPage.PolicyListPage">
+<ContentPage.Padding>  
+  
+        <OnPlatform x:TypeArguments="Thickness"  
+                    iOS="0,20,0,0"  
+                    Android="0,0,0,0">  
+        </OnPlatform>  
+    </ContentPage.Padding>
+    <ContentPage.Resources>
+        <Converter:ProducrConverter x:Key="ProducrConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+        <Grid ColumnSpacing="0" VerticalOptions="Fill" 
+                  HorizontalOptions="Fill" BackgroundColor="White"
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+               <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+               <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid VerticalOptions="Fill" BackgroundColor="#00AF7A"  HorizontalOptions="FillAndExpand">
+                    <!--<Image IsVisible="False" Source="head_back.png"  Aspect="Fill"/>-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Image HorizontalOptions="Center" Grid.Column="0"  VerticalOptions="Center"
+                       WidthRequest="30" HeightRequest="30" Source="Back_Arrow.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding BackCommand}"  />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+
+                        <Image HorizontalOptions="Center" Grid.Column="2" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="Notification_Bell.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NotificationCommand }"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="{Binding PageName}" Grid.Column="1"
+                               TextColor="#474747" HorizontalOptions="StartAndExpand" VerticalOptions="Center" 
+                               FontSize="Medium" />
+                        <Image HorizontalOptions="Center" Grid.Column="3" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="powerOff.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutButtonCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </Grid>
+                </Grid>
+
+            <Grid  Grid.Row="1" BackgroundColor="White" 
+                   VerticalOptions="Fill" ColumnSpacing="0"
+                   RowSpacing="0" 
+                   HorizontalOptions="Fill" Margin="0,0,2,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2"/>
+                </Grid.RowDefinitions>
+                <Label Margin="13,0,0,0" Text="Policy" HorizontalOptions="Start" FontSize="Small" TextColor="#626678" Font="20,Bold" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+                <Label Margin="0,0,20,0"  Text="{Binding CommandView}" HorizontalOptions="End" Grid.Column="1" Font="20,Bold"
+                       TextColor="#626678" VerticalOptions="Center"
+                                               HorizontalTextAlignment="End"/>
+                <BoxView Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="LightGray"></BoxView>
+            </Grid>
+            <ListView Grid.Row="2" RowHeight="80" SeparatorVisibility="None" ItemsSource="{Binding HealthPolicies, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                           
+                            <Grid  BackgroundColor="White"   VerticalOptions="Fill" RowSpacing="0" HorizontalOptions="Fill" Margin="15,0,10,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="40"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="2"/>
+                                </Grid.RowDefinitions>
+                                <Grid ColumnSpacing="0" RowSpacing="0" VerticalOptions="Fill" HorizontalOptions="Fill">
+                                   
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                    <Label Margin="0,0,0,0" Text="Policy No: " HorizontalOptions="Start" Font="14"
+                                           TextColor="#6e808d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="End"/>
+                                    <Label Margin="0,0,0,0" Text="{Binding Policy_No}" HorizontalOptions="End"
+                                           Font="12" TextColor="Black" VerticalOptions="Center"
+                                               HorizontalTextAlignment="End"/>
+                                    </StackLayout>
+
+                                    
+                                    <Grid Grid.Row="1" ColumnSpacing="0" RowSpacing="0" VerticalOptions="Fill" HorizontalOptions="Fill">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="*"/>
+                                           
+                                            </Grid.ColumnDefinitions>
+                                        <StackLayout Orientation="Horizontal" Spacing="0" Padding="0" Margin="0" HorizontalOptions="Start" VerticalOptions="Center">
+                                            <Label Margin="0,0,0,0" Text="Product: " HorizontalOptions="Start" Font="14"
+                                           TextColor="#6e808d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="Start"/>
+                                            <!--<Label  Margin="0,0,0,0" Text="{Binding Product_Nm,Converter={StaticResource ProducrConverter}}" HorizontalOptions="Start"
+                                            TextColor="Black" VerticalOptions="Center" Font="15,Bold"
+                                               HorizontalTextAlignment="End"/>-->
+                                            <Label  Margin="0,0,0,0" Text="{Binding Product_Nm}" HorizontalOptions="End"
+                                            TextColor="Black" VerticalOptions="Center" Font="10,Normal"
+                                               HorizontalTextAlignment="End"/>
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1" Spacing="0" Orientation="Horizontal" Padding="0" Margin="0,0,0,0" 
+                                                     HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
+                                            <Label Margin="0,0,0,0" Text="Year :" HorizontalOptions="End" Font="10,Normal"
+                                           TextColor="#6e808d" VerticalOptions="Center"
+                                               HorizontalTextAlignment="End"/>
+                                            <Label Grid.Column="1" Margin="0,0,0,0" Text="{Binding Policy_Start_Dt,StringFormat='{0:yyyy}'}" Font="12,Bold"
+                                                HorizontalOptions="Start"
+                                            TextColor="Black" VerticalOptions="Center"
+                                               HorizontalTextAlignment="End"/>
+                                        </StackLayout>
+
+                                    </Grid>
+                                    
+
+                                </Grid>
+                                    <!--<StackLayout x:Name="ViewImage" IsVisible="True"  Grid.RowSpan="2" Grid.Column="1" Orientation="Vertical">-->
+                                <Image Margin="0,0,0,0" VerticalOptions="Center"
+                                       IsVisible="{Binding  Source={x:Reference Policylst},Path=BindingContext.IsComeFromDownLoadT}"
+                                       Aspect="AspectFit" HorizontalOptions="Center" Grid.RowSpan="2" Grid.Column="1"
+                                       Source="{Binding Imageurln}" HeightRequest="40" WidthRequest="40">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference Policylst},Path=BindingContext.PolicyCommand}" CommandParameter="{Binding Policy_Id}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                        <Image Margin="0,0,0,0"  VerticalOptions="Center" Grid.RowSpan="2" Grid.Column="1"
+                                       Aspect="AspectFit" HorizontalOptions="Center"
+                                                IsVisible="{Binding  Source={x:Reference Policylst},Path=BindingContext.IsComeFromDownLoadF}"
+                                       Source="Ic_Attached" HeightRequest="40" WidthRequest="40">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference Policylst},Path=BindingContext.UploadCommand}" CommandParameter="{Binding Policy_No}"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                   <!-- </StackLayout>-->
+                                    <!--<Image Margin="0,0,0,0"  IsVisible="False"  Grid.RowSpan="2" Grid.Column="1"
+                                           VerticalOptions="Center"
+                                       Aspect="AspectFit" HorizontalOptions="Center" 
+                                       Source="{Binding Imageurln}" HeightRequest="40" WidthRequest="40">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference Policylst},Path=BindingContext.PolicyCommand}" CommandParameter="{Binding Policy_Id}"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>-->
+
+                                    <BoxView Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="LightGray"></BoxView>
+                                <!--<Grid.GestureRecognizers>  
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference Policylst},Path=BindingContext.PolicyCommand}" CommandParameter="{Binding Policy_Id}"/>
+                                </Grid.GestureRecognizers>-->
+                            </Grid>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                   
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+             <Button Text="UPDATE CLIENT DETAIL" VerticalOptions="End" Margin="0,0,0,30"  Grid.Row="2"  Command="{Binding ProfileButtonCommand}"  IsVisible="{Binding IsComeFromPolicy}" WidthRequest="200"    HeightRequest="37"  CornerRadius="10" HorizontalOptions="Center" BackgroundColor ="#223d8e" TextColor="White"/>
+                <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00AF7A"   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Padding="0">
+
+                    <Grid.ColumnDefinitions>
+                       
+                        <ColumnDefinition Width="*"/>
+                         
+                        <ColumnDefinition Width="*"/>
+                         
+                         <ColumnDefinition Width="*"/>
+                        
+                         <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                     <Image HorizontalOptions="Center" Grid.Column="0" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Home" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Home"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Home" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="0" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Home"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Image HorizontalOptions="Center" Grid.Column="1" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Pharmacy" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="PHARMACY"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="PHARMACY" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="1" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="PHARMACY"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Image HorizontalOptions="Center" Grid.Column="2" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Doctor" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="DOCTORS"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="DOCTORS" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="2" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="DOCTORS"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                       <Image HorizontalOptions="Center" Grid.Column="3" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="IcFEmergency" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="EMERGENCY"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="EMERGENCY" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="3" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="EMERGENCY"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <Grid  Grid.Row="3" IsVisible="False" BackgroundColor="#0f2b7f">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Image HorizontalOptions="Center" Grid.Column="0" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="home.png" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Home"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Home" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="0" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Home"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Image HorizontalOptions="Center" Grid.Column="1" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="garage_car.png" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Garage"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="GARAGES" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="1" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Garage"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Image HorizontalOptions="Center" Grid.Column="2" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Hospitals.png" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Hospitals"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="HOSPITALS" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="2" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Hospitals"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Image HorizontalOptions="Center" Grid.Column="3" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Escalation.png" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Escalation"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="ESCLASIONS" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="3" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Escalation"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+
+
+            </Grid>
+        <Grid IsVisible="{Binding IsProcessing,Mode=TwoWay}"  BackgroundColor="Black" Opacity=".5">
+            <ActivityIndicator  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0" HeightRequest="50" WidthRequest="50"
+                           IsVisible="{Binding IsProcessing,Mode=TwoWay}"
+                           IsRunning="{Binding IsProcessing,Mode=TwoWay}"
+                           Color="#00AF7A" />
+        </Grid>
+        </Grid> 
+    </ContentPage.Content>
+</ContentPage>

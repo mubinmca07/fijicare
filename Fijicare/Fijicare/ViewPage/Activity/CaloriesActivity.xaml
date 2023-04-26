@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:convert="clr-namespace:Fijicare.Converters"
+             x:Class="Fijicare.ViewPage.Activity.CaloriesActivity">
+   <ContentPage.Resources>
+       <convert:SelectEdDayConverter x:Key="SelectEdDayConverter"/>
+        <Style x:Key="frame" TargetType="Frame">
+            <Setter Property="HasShadow" Value="False"/>
+            <Setter Property="VerticalOptions" Value="Fill"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="CornerRadius" Value="20"/>
+        </Style>
+         
+          <Style x:Key="dayFrame" TargetType="Frame">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HeightRequest"  Value="40"/>
+            <Setter Property="HasShadow" Value="False"/>
+            <Setter Property="BorderColor" Value="Transparent"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+             
+          </Style>
+
+        <Style x:Key="img" TargetType="Image"> 
+            <Setter Property="HorizontalOptions" Value="Center"/>
+             <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HeightRequest"  Value="30"/>
+            <Setter Property="WidthRequest" Value="30"/>
+            <Setter Property="Aspect" Value="AspectFit"/>
+        </Style>
+        <Style x:Key="label" TargetType="Label">
+           <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Start"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="30"/>
+       </Style>
+        <Style x:Key="unitLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="Gray"/>
+           <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Start"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Subtitle"/>
+       </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand">
+        <Grid x:Name="contentgrd" RowDefinitions="20,7*,3*">
+                <Frame Grid.Row="0"  Grid.Column="0" Style="{StaticResource frame}" HeightRequest="20">
+                    <Label  HorizontalOptions="Center" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"                               
+                                VerticalOptions="Center" FontAttributes="Bold" Text="{Binding SelectedDate_string ,Mode=TwoWay}"/>
+
+                </Frame>
+                <Frame  Margin="0,0,0,5" Padding="0" Grid.Row="1"   Style="{StaticResource frame}" >
+               <Grid RowDefinitions="*,120" RowSpacing="0" VerticalOptions="Fill">
+                    
+                <WebView Margin="0,0,0,0" IsVisible="true"
+                x:Name="webViewElement" Grid.Row="0"   
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"/>
+                   
+<!--<Grid WidthRequest="50" BackgroundColor="White" HeightRequest="350" HorizontalOptions="End" VerticalOptions="Start"></Grid>-->
+
+                   <Grid Grid.Row="1" VerticalOptions="Start" >
+        <Grid RowSpacing="0" ColumnSpacing="0" ColumnDefinitions="*,*,*,*,*,*,*">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                       <microcharts:ChartView  Grid.Row="0" Grid.Column="0"  
+                                                   Chart="{Binding WeekWiseStepData.SunRadialGaugeGraph}" >
+
+<microcharts:ChartView.GestureRecognizers>
+    <TapGestureRecognizer Tapped="DayWiseCommand" CommandParameter="0"/>
+</microcharts:ChartView.GestureRecognizers>
+                   </microcharts:ChartView>
+                    
+                         <microcharts:ChartView  Grid.Row="0" Grid.Column="1" 
+                                                   Chart="{Binding WeekWiseStepData.MonRadialGaugeGraph}"  >
+                    <microcharts:ChartView.GestureRecognizers>
+    <TapGestureRecognizer Tapped="DayWiseCommand" CommandParameter="1"/>
+</microcharts:ChartView.GestureRecognizers>
+                   </microcharts:ChartView>
+                  
+                          <microcharts:ChartView Grid.Row="0" Grid.Column="2"  
+                                                   Chart="{Binding WeekWiseStepData.TueRadialGaugeGraph}"  >
+                            <microcharts:ChartView.GestureRecognizers>
+    <TapGestureRecognizer Tapped="DayWiseCommand" CommandParameter="2"/>
+</microcharts:ChartView.GestureRecognizers>
+                   </microcharts:ChartView>
+                   
+                  
+                         <microcharts:ChartView  Grid.Row="0" Grid.Column="3"  
+                                                   Chart="{Binding WeekWiseStepData.WedRadialGaugeGraph}"  >
+                             <microcharts:ChartView.GestureRecognizers>
+    <TapGestureRecognizer Tapped="DayWiseCommand" CommandParameter="3"/>
+</microcharts:ChartView.GestureRecognizers>
+                   </microcharts:ChartView>
+                          
+                          <microcharts:ChartView Grid.Row="0" Grid.Column="4"  
+                                                   Chart="{Binding WeekWiseStepData.ThuRadialGaugeGraph}"  >
+                              <microcharts:ChartView.GestureRecognizers>
+    <TapGestureRecognizer Tapped="DayWiseCommand" CommandParameter="4"/>
+</microcharts:ChartView.GestureRecognizers>
+                   </microcharts:ChartView>
+                   
+                    
+                           <microcharts:ChartView Grid.Row="0" Grid.Column="5" 
+                                                   Chart="{Binding WeekWiseStepData.FriRadialGaugeGraph}" >
+                               <microcharts:ChartView.GestureRecognizers>
+    <TapGestureRecognizer Tapped="DayWiseCommand" CommandParameter="5"/>
+</microcharts:ChartView.GestureRecognizers>
+                   </microcharts:ChartView>
+                  
+               
+                    <microcharts:ChartView  Grid.Row="0"  Grid.Column="6"  
+                                                   Chart="{Binding WeekWiseStepData.SatRadialGaugeGraph}"  >
+                        <microcharts:ChartView.GestureRecognizers>
+    <TapGestureRecognizer Tapped="DayWiseCommand" CommandParameter="6"/>
+</microcharts:ChartView.GestureRecognizers>
+                   </microcharts:ChartView>
+        
+                    <Frame Grid.Row="1" Grid.Column="0" Style="{StaticResource dayFrame}" >
+                        <Label  HorizontalOptions="Center"
+                                TextColor="{Binding WeekWiseStepData.SunSelectDay,Converter={StaticResource SelectEdDayConverter}}"
+                                VerticalOptions="Center" FontAttributes="Bold" Text="S"/>
+                    </Frame>
+                    <Frame Grid.Row="1" Grid.Column="1" Style="{StaticResource dayFrame}">
+                        <Label  HorizontalOptions="Center" VerticalOptions="Center"
+                                TextColor="{ Binding WeekWiseStepData.MonSelectDay, Converter={StaticResource SelectEdDayConverter}}"
+                                FontAttributes="Bold"
+                                Text="M"/>
+                    </Frame>
+                    <Frame Grid.Row="1" Grid.Column="2" Style="{StaticResource dayFrame}">
+                        <Label  HorizontalOptions="Center" VerticalOptions="Center"
+                                TextColor="{ Binding WeekWiseStepData.TueSelectDay, Converter={StaticResource SelectEdDayConverter}}"
+                                FontAttributes="Bold"  Text="T"/>
+                    </Frame>
+                    <Frame Grid.Row="1" Grid.Column="3" Style="{StaticResource dayFrame}">
+                        <Label  HorizontalOptions="Center" VerticalOptions="Center"
+                                TextColor="{Binding WeekWiseStepData.WedSelectDay, Converter={StaticResource SelectEdDayConverter}}"
+                                FontAttributes="Bold"  Text="W"/>
+                    </Frame>
+
+                    <Frame Grid.Row="1" Grid.Column="4" Style="{StaticResource dayFrame}">
+                        <Label  HorizontalOptions="Center" VerticalOptions="Center"
+                                TextColor="{ Binding WeekWiseStepData.ThuSelectDay,Converter={StaticResource SelectEdDayConverter}}"
+                                FontAttributes="Bold"  Text="T"/>
+                    </Frame>
+                    <Frame Grid.Row="1" Grid.Column="5" Style="{StaticResource dayFrame}">
+                        <Label  HorizontalOptions="Center" VerticalOptions="Center"
+                                TextColor="{ Binding WeekWiseStepData.FriSelectDay, Converter={StaticResource SelectEdDayConverter}}"
+                                FontAttributes="Bold"  Text="F"/>
+                    </Frame>
+                    <Frame Grid.Row="1" Grid.Column="6" Style="{StaticResource dayFrame}">
+                        <Label  HorizontalOptions="Center" VerticalOptions="Center"
+                                TextColor="{ Binding WeekWiseStepData.SatSelectDay,Converter={StaticResource SelectEdDayConverter}}"
+                                FontAttributes="Bold"  Text="S"/>
+                    </Frame>
+                   </Grid>
+                       
+                   </Grid>
+                   </Grid>
+            </Frame>
+
+
+            <Frame Margin="0,5,0,0" Grid.Row="2" Style="{StaticResource frame}">
+                <Grid RowDefinitions="20,50,Auto,*" RowSpacing="10" ColumnDefinitions="*,*,*">
+                    <Image Grid.Row="1" Grid.Column="0" Style="{StaticResource img}" Source="heart.png"/>
+                    <Image Grid.Row="1" Grid.Column="1" Style="{StaticResource img}" Source="steps.png"/>
+                    <Image Grid.Row="1" Grid.Column="2" Style="{StaticResource img}" Source="distance.png"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource label}" Text="{Binding Heartpoints,Mode=TwoWay}"/>
+                    <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource label}" Text="{Binding Step,Mode=TwoWay}"/>
+                    <Label Grid.Row="2" Grid.Column="2" Style="{StaticResource label}" Text="{Binding Distance,Mode=TwoWay}"/>
+
+                    <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource unitLabel}" Text="Heart points"/>
+                    <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource unitLabel}" Text="Steps"/>
+                    <Label Grid.Row="3" Grid.Column="2" Style="{StaticResource unitLabel}" Text="Km"/>
+                </Grid>
+            </Frame>
+                <Grid   Grid.Row="0" Grid.RowSpan="2" IsVisible="{Binding IsBusy}"
+                    BackgroundColor="Transparent" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand"   >
+                    <ActivityIndicator   IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="Teal"
+                                         HorizontalOptions="Center" VerticalOptions="Center"
+                                         Margin="0"
+                              />
+                </Grid>
+        </Grid>
+            <Grid   IsVisible="{Binding IsBusy}" BackgroundColor="WhiteSmoke"
+                    VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand"   >
+                    <ActivityIndicator   IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="Teal"
+                                         HorizontalOptions="Center" VerticalOptions="Center"
+                                         Margin="0"
+                              />
+                </Grid>
+      </Grid>
+    </ContentPage.Content>
+</ContentPage>

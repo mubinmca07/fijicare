@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" x:Class="FijiCareViews.ActivityPage">
+     <NavigationPage.TitleView>
+        <Grid ColumnSpacing="0">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+               
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="titlename" VerticalOptions="Center" 
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center"  FontSize="20" FontAttributes="Bold"/>
+           
+        </Grid>  
+    </NavigationPage.TitleView>
+   <ContentPage.Resources>
+       <Style x:Key="bsbaGrFrame" TargetType="Frame">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="CornerRadius" Value="1"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="HasShadow" Value="False"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="BorderColor" Value="#e7614c"/>
+        </Style>
+        <Style x:Key="bsbaGr" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="#e7614c"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+        </Style>
+   </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                 <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand"  Margin="10,0,10,3" Spacing="0"  >
+
+
+                                    <Frame  Style="{DynamicResource bsbaGrFrame}"
+                                            BackgroundColor="{Binding  HColor}">
+                                        <Label  Text="H"  Style="{StaticResource bsbaGr}" />
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TypeOfCommand}" CommandParameter="H"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+
+                                    <Frame   Style="{DynamicResource bsbaGrFrame}" BackgroundColor="{Binding  DColor}" >
+                                        <Label Text ="D"  Style="{StaticResource bsbaGr}" />
+                                         <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TypeOfCommand}" CommandParameter="D"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+
+                                    <Frame   Style="{DynamicResource bsbaGrFrame}" BackgroundColor="{Binding  WColor}"  >
+                                        <Label Text ="W"  Style="{StaticResource bsbaGr}"  />
+                                         <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TypeOfCommand}"
+                                                                  CommandParameter="W"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                 <Frame   Style="{DynamicResource bsbaGrFrame}" BackgroundColor="{Binding  MColor}">
+                                        <Label Text ="M"   Style="{StaticResource bsbaGr}"  />
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TypeOfCommand}"
+                                                                  CommandParameter="M"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                  <Frame   Style="{DynamicResource bsbaGrFrame}" BackgroundColor="{Binding  YColor}">
+                                        <Label Text ="Y"  Style="{StaticResource bsbaGr}"  />
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TypeOfCommand}"
+                                                                  CommandParameter="Y"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                </StackLayout>
+            <Grid Grid.Row="1" ColumnDefinitions="20,40,*,40,20">
+                <Frame Grid.Column="1" VerticalOptions="Center" Padding="0" HeightRequest="30" BackgroundColor="#e7614c"
+                       WidthRequest="30" Opacity="0.5"
+                       CornerRadius="15"
+                       HorizontalOptions="Center">
+                    <Label x:Name="prevBtn" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center"  WidthRequest="20" TextColor="White" />
+                     <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding PrevCommand}" CommandParameter="Prev"/>
+                     </Frame.GestureRecognizers>
+
+                </Frame>
+                <Label Grid.Column="2" Text="{Binding DisplayCurrentInt}" TextColor="Red"/>
+                 <Frame Grid.Column="3" VerticalOptions="Center" Padding="0" HeightRequest="30" BackgroundColor="#e7614c"
+                       WidthRequest="30" Opacity="0.5"
+                       CornerRadius="15"
+                       HorizontalOptions="Center">
+                    <Label x:Name="nextBtn" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center"  WidthRequest="20" TextColor="White" />
+                     <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding NextCommand}" CommandParameter="next"/>
+                     </Frame.GestureRecognizers>
+                 </Frame>
+            </Grid>
+            <microcharts:ChartView x:Name="chart" Grid.Row="2" Chart="{Binding BarChartGraph}"
+                                   
+                                   BackgroundColor="White"  />
+            <StackLayout Grid.Row="3" Orientation="Vertical" HorizontalOptions="Start" VerticalOptions="Start">
+
+                <Label  Text="{Binding DisplayCurrentInt}" TextColor="Red"/>
+
+                 <Label  Text="{Binding TotalStep}" TextColor="Red"/>  
+            </StackLayout>
+             
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

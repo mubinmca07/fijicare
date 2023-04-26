@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="SearchHospital"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:Custom="clr-namespace:Fijicare.Utility.CustomEntry"
+             x:Class="Fijicare.ViewPage.WelcomepPage">
+    <ContentPage.Padding>
+
+        <OnPlatform x:TypeArguments="Thickness"  
+                    iOS="0,20,0,0"  
+                    Android="0,0,0,0">
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <Grid BackgroundColor="#ffffff" RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".10*"/>
+                <RowDefinition Height="0.63*"/>
+                <RowDefinition Height="0.15*"/>
+                <RowDefinition Height=".12*"/>
+
+            </Grid.RowDefinitions>
+            <Grid VerticalOptions="Fill" RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+
+
+                <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="40"
+                       WidthRequest="180" Source="Fijicare_Logo.png" Aspect="AspectFit"/>
+
+            </Grid>
+
+            <Grid Grid.Row="2" RowSpacing="0" ColumnSpacing="0" BackgroundColor="#223d8e"   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>               
+                <Button x:Name="signup"  Grid.Column="0" Margin="0,2,0,10"  TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" BorderRadius="10" HorizontalOptions="Center" FontSize="14"
+                        VerticalOptions="Center" Clicked="Signup_Clicked"  WidthRequest="120" HeightRequest="40"   
+                        BackgroundColor="#223d8e" />
+
+                <Button Text="{Binding LoginText}" Grid.Column="1" Margin="0,2,0,10" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" BorderRadius="10" HorizontalOptions="Center" FontSize="14"
+                        VerticalOptions="Center" Clicked="Login_Clicked" WidthRequest="120" HeightRequest="40"   
+                        BackgroundColor="#223d8e" />
+            </Grid>
+
+
+            <Grid Grid.Row="1" RowSpacing="10" ColumnSpacing="0" BackgroundColor="#ffffff"  
+                  Margin="10"
+                  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>                   
+                </Grid.ColumnDefinitions>
+
+
+
+                <Image HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"  
+                       VerticalOptions="Center"  
+                        Source="ic_aboutus" Aspect="AspectFit">
+
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MainCommand}" CommandParameter="About"/>
+                    </Image.GestureRecognizers>
+                </Image>
+
+             
+
+                    <Image HorizontalOptions="Center" Grid.Row="1" 
+                       VerticalOptions="Center"
+                        Source="ic_product" Aspect="AspectFit">
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MainCommand}" CommandParameter="PRODUCT"/>
+                    </Image.GestureRecognizers>
+                </Image>
+
+
+              
+                    <Image HorizontalOptions="Center" Grid.Row="2" 
+                       VerticalOptions="Center"  
+                        Source="ic_contact" Aspect="AspectFit">
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MainCommand}" CommandParameter="Contact"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+
+            <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0" BackgroundColor="##ffffff"   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image HorizontalOptions="Center" Grid.Column="1" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Pharmacy" Aspect="Fill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" 
+                                              CommandParameter="PHARMACY"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="PHARMACY" HorizontalOptions="Center" Grid.Row="1" TextColor="#223d8e"
+                       Grid.Column="1" VerticalOptions="Start" Margin="0,0,0,5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="PHARMACY"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Image HorizontalOptions="Center" Grid.Column="3" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Doctor" Aspect="Fill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="DOCTORS"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="DOCTORS" HorizontalOptions="Center" Grid.Row="1" TextColor="#223d8e"
+                       Grid.Column="3" VerticalOptions="Start" Margin="0,0,0,5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="DOCTORS"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Image HorizontalOptions="Center" Grid.Column="5" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="IcFEmergency" Aspect="Fill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="EMERGENCY"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="EMERGENCY" HorizontalOptions="Center" Grid.Row="1" TextColor="#223d8e"
+                       Grid.Column="5" VerticalOptions="Start" Margin="0,0,0,5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="EMERGENCY"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="SearchHospital"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:Custom="clr-namespace:Fijicare.Utility.CustomEntry"
+             x:Class="Fijicare.ViewPage.WelcomepPage">
+    <ContentPage.Padding>  
+  
+        <OnPlatform x:TypeArguments="Thickness"  
+                    iOS="0,20,0,0"  
+                    Android="0,0,0,0">  
+        </OnPlatform>  
+    </ContentPage.Padding>
+    <ContentPage.Content>
+ <Grid BackgroundColor="#ffffff" RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".10*"/>
+                <RowDefinition Height="0.63*"/>
+                <RowDefinition Height="0.15*"/>
+                <RowDefinition Height=".12*"/>
+
+            </Grid.RowDefinitions>
+            <Grid VerticalOptions="Fill" RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+              
+              
+
+                <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="45"
+                       WidthRequest="180" Source="Fijicare_Logo.png" Aspect="AspectFit"/>
+
+               
+            </Grid>
+
+            <Grid Grid.Row="2" RowSpacing="0" ColumnSpacing="0" BackgroundColor="#223d8e"   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+               
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button x:Name="signup"  Grid.Column="0" Margin="50,10,10,0" TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" BorderRadius="10" HorizontalOptions="Center" FontSize="14"
+                        VerticalOptions="Center" Clicked="Signup_Clicked"  HeightRequest="45"   
+                        BackgroundColor="#223d8e" />
+
+                <Button Text="{Binding LoginText}" Grid.Column="1" Margin="50,10,10,0"  TextColor="#FFFFFF" BorderColor="White" BorderWidth="3" BorderRadius="10" HorizontalOptions="Center" FontSize="14"
+                        VerticalOptions="Center" Clicked="Login_Clicked"  HeightRequest="45"   
+                        BackgroundColor="#223d8e" />
+            </Grid>
+
+
+            <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="0" BackgroundColor="#ffffff"    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                                    
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Orientation="Vertical"  BackgroundColor="#ffffff" VerticalOptions="Center">
+
+                    <Image HorizontalOptions="Center" Grid.Row="0" 
+                       VerticalOptions="Center"  
+                        Source="ic_aboutus" Aspect="Fill"/>
+                    
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MainCommand}" CommandParameter="About"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Grid.Column="0" Padding="1"  HorizontalOptions="Center" Orientation="Vertical"  BackgroundColor="#ffffff" VerticalOptions="Center">
+                        
+                        <Image HorizontalOptions="Center" Grid.Row="0" 
+                       VerticalOptions="Center"
+                        Source="ic_product" Aspect="Fill"/>
+                    
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding MainCommand}" CommandParameter="PRODUCT"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+
+                <StackLayout Grid.Row="2" Grid.Column="0"  HorizontalOptions="Center" Orientation="Vertical"  BackgroundColor="#ffffff" VerticalOptions="Center">
+
+                    <Image HorizontalOptions="Center" Grid.Row="0" 
+                       VerticalOptions="Center"  
+                        Source="ic_contact" Aspect="Fill"/>
+                    
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MainCommand}" CommandParameter="Contact"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                
+               
+
+               
+                
+
+                
+
+            </Grid>
+
+            <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0" BackgroundColor="##ffffff"   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Padding="0">          
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="Auto"/>
+                     <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image HorizontalOptions="Center" Grid.Column="1" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Pharmacy" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="PHARMACY"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                <Label Text="PHARMACY" HorizontalOptions="Center" Grid.Row="1" TextColor="#223d8e"
+                       Grid.Column="1" VerticalOptions="Start" Margin="0,0,0,5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="PHARMACY"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                    <Image HorizontalOptions="Center" Grid.Column="3" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Doctor" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="DOCTORS"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                <Label Text="DOCTORS" HorizontalOptions="Center" Grid.Row="1" TextColor="#223d8e"
+                       Grid.Column="3" VerticalOptions="Start" Margin="0,0,0,5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="DOCTORS"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Image HorizontalOptions="Center" Grid.Column="5" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="IcFEmergency" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="EMERGENCY"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                <Label Text="EMERGENCY" HorizontalOptions="Center" Grid.Row="1" TextColor="#223d8e"
+                       Grid.Column="5" VerticalOptions="Start" Margin="0,0,0,5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="EMERGENCY"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Grid>
+        </ContentPage.Content>
+         </ContentPage>
+-->

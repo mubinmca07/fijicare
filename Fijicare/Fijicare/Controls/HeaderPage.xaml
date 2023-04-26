@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fijicare.Controls.HeaderPage">
+  <ContentView.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Image HorizontalOptions="Center" Grid.Column="0" Margin="0,0,0,15" VerticalOptions="Center"
+                       WidthRequest="30" HeightRequest="30" Source="Sidebartoggler.png" Aspect="Fill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding Source={x:Reference DashboardPage},Path=BindingContext.HamburgerMenuClick}"  />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image HorizontalOptions="Center" Grid.Column="1" 
+                                       VerticalOptions="Center" HeightRequest="40"
+                       WidthRequest="150" Source="Fijicare_Logo.png" Aspect="AspectFit"/>
+            <Image HorizontalOptions="Center" Grid.Column="2" VerticalOptions="Center" HeightRequest="30" Margin="0,0,0,15"
+                       WidthRequest="30" Source="Notification_Bell.png" Aspect="Fill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NotificationCommand }"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image HorizontalOptions="Center" Grid.Column="3" VerticalOptions="Center" HeightRequest="30" Margin="0,0,0,15"
+                       WidthRequest="30" Source="powerOff.png" Aspect="Fill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LogoutButtonCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

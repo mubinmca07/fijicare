@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="PolicyClaim"
+             x:Class="Fijicare.ViewPage.HealthClaimPage">
+
+<ContentPage.Padding>  
+  
+        <OnPlatform x:TypeArguments="Thickness"  
+                    iOS="0,20,0,0"  
+                    Android="0,0,0,0">  
+        </OnPlatform>  
+    </ContentPage.Padding>    <ContentPage.Resources>
+        <Style x:Key="policydetailLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="TextColor" Value="#474e61"/>
+        </Style>
+        <Style  TargetType="Label">
+            <Setter Property="FontSize" Value="Small"/>
+            <Setter Property="TextColor" Value="#474e61"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid ColumnSpacing="0" VerticalOptions="Fill" 
+                  HorizontalOptions="Fill"  BackgroundColor="#cecece"
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid VerticalOptions="Fill" BackgroundColor="#00AF7A"  HorizontalOptions="FillAndExpand">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Image HorizontalOptions="Center" Grid.Column="0"  VerticalOptions="Center"
+                       WidthRequest="30" HeightRequest="30" Source="Back_Arrow.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding BackCommand}"  />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+
+                        <Image HorizontalOptions="Center" Grid.Column="2" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="Notification_Bell.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NotificationCommand }"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Claim Details" Grid.Column="1" TextColor="#474747" 
+                           HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="Small" />
+                        <Image HorizontalOptions="Center" Grid.Column="3" VerticalOptions="Center" HeightRequest="30" 
+                       WidthRequest="30" Source="powerOff.png" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutButtonCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </Grid>
+                </Grid>
+                <!---->
+                <ListView Grid.Row="1" IsVisible="{Binding IsHealth}"  ItemsSource="{Binding HealthClaims}"  BackgroundColor="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame  BackgroundColor="White" Padding="0" HasShadow="True" Margin="5">
+                                    <Grid Margin="15,0" ColumnSpacing="0" BackgroundColor="LightGray" RowSpacing="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label    Style="{StaticResource policydetailLabel}" Grid.Row="0" Text="Claim Details" 
+                                            HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <BoxView  HeightRequest="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalOptions="End" BackgroundColor="LightGray"/>
+                                        <Label Grid.Row="2" Text="Claim No" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Claim_No}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <Label Grid.Row="3"  Text="Provider" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="3"  Grid.Column="1"  Text="{Binding Provider_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+
+                                        <Label Grid.Row="4" Text="Status" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="4"  Grid.Column="1" Text="{Binding Status_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+
+                                        <Label Grid.Row="5" Text="Insured " HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="5" Grid.Column="1"  Text="{Binding Insured_Nm,Mode=TwoWay}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <Label Grid.Row="6" Text="Product" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="6"  Grid.Column="1"  Text="{Binding Product_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+
+                                        <Label Grid.Row="7" Text="Scheme" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="7"  Grid.Column="1"  Text="{Binding Scheme_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+
+                                        <Label Grid.Row="8" Text="Claim Type" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="8"  Grid.Column="1"  Text="{Binding Product_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+
+                                        <Label Grid.Row="9" Text="Loss Type" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="9"  Grid.Column="1"  Text="{Binding Ailment_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <Label Grid.Row="10" Text="Claims" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="10"  Grid.Column="1"  Text="{Binding Paid_Amt}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        
+                                        <!-- <Label Grid.Row="11" Text="Email Id" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Row="11"  Grid.Column="1"  Text="{Binding Email1}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                    <Label Grid.Row="12" Text="Intermediary" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Row="12"  Grid.Column="1"  Text="{Binding Intermediary_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>-->
+
+                                    </Grid>
+
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Grid.Row="1" IsVisible="{Binding IsMotor}" SeparatorVisibility="None"                      
+                      CachingStrategy="RecycleElement" RowHeight="650" ItemsSource="{Binding MotorClaims}" 
+                      BackgroundColor="#cecece">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame  BackgroundColor="White" Padding="0" HasShadow="True" Margin="5">
+                                    <Grid Margin="15,0" ColumnSpacing="0" RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="45"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="35"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid  Grid.ColumnSpan="2"  RowSpacing="0" ColumnSpacing="0" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Source="MotorRiskMotor.png" Grid.Row="0" Grid.Column="0" WidthRequest="30" HeightRequest="30"
+                                               HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label   Style="{StaticResource policydetailLabel}" Grid.Row="0" Text=" Claim Detail" 
+                                            HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Grid.Column="1"
+                                               HorizontalTextAlignment="Start"/>
+                                        </Grid>
+                                        <BoxView  HeightRequest="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalOptions="End" BackgroundColor="LightGray"/>
+
+                                        <Label Grid.Row="2"  TextColor="#6e808d"  Text="Resistration No" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="2"   TextColor="Black" Grid.Column="1" Text="{Binding Registration_No}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <Label Grid.Row="3"  Text="RTO Location" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="3"  Grid.Column="1"  TextColor="Black" Text="{Binding Registration_Location}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+
+                                        <Label Grid.Row="4" Text="Chassis No" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                          TextColor="#6e808d" HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="4"  Grid.Column="1" Text="{Binding Chassis_No}" TextColor="Black" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+
+                                        <Label Grid.Row="5" Text="Engine No"  TextColor="#6e808d"  HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="5" Grid.Column="1" TextColor="Black" Text="{Binding Engine_No,Mode=TwoWay}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <Label Grid.Row="6" Text="Make"   TextColor="#6e808d"  HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="6"  Grid.Column="1" TextColor="Black" Text="{Binding Manufacturer_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+
+                                        <Label Grid.Row="7"  TextColor="#6e808d"  Text="Modal" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="7"  Grid.Column="1" TextColor="Black" Text="{Binding Model_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+
+                                        <Label Grid.Row="8"   TextColor="#6e808d" Text="Vehicle Type" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="8"  Grid.Column="1" TextColor="Black" Text="{Binding Vehicle_Type}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <Label Grid.Row="9"  TextColor="#6e808d"  Text="Product Name" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="9"  Grid.Column="1" TextColor="Black" Text="{Binding Product_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="10"  TextColor="#6e808d"  Text="Claim Type Name" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="10"  Grid.Column="1" TextColor="Black" Text="{Binding ClaimType_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label IsVisible="False" Grid.Row="11"  TextColor="#6e808d"  Text="Loss Type" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label IsVisible="False" Grid.Row="11"  Grid.Column="1" TextColor="Black" Text="{Binding LossType_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="12"  TextColor="#6e808d"  Text="Intermediary" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="12"  Grid.Column="1" TextColor="Black" Text="{Binding Intermediary_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <Label Grid.Row="13"  TextColor="#6e808d"  Text="Intimation Mode" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="13"  Grid.Column="1" TextColor="Black" Text="{Binding Intimation_Mode}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <Label Grid.Row="14"  TextColor="#6e808d"  Text="Status  " HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="14"  Grid.Column="1" TextColor="Black" Text="{Binding Status_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <Label Grid.Row="15"  TextColor="#6e808d"  Text="Estimated Amount " HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="15"  Grid.Column="1" TextColor="Black" Text="{Binding Estimated_Amt}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <Label Grid.Row="16"  TextColor="#6e808d"  Text="Loss " HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="16"  Grid.Column="1" TextColor="Black" Text="{Binding Loss_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+                                        <Label Grid.Row="17"  TextColor="#6e808d"  Text="Client Name " HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+                                        <Label Grid.Row="17"  Grid.Column="1" TextColor="Black" Text="{Binding Client_Nm}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Start"/>
+
+
+                                        
+
+                                    </Grid>
+
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Grid Grid.Row="1" IsVisible="{Binding IsNoClaimFound}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                    <Label Text="No Claim found!"    />
+                </Grid>
+                <Frame  Grid.Row="2" BackgroundColor="White" Padding="0" HasShadow="True" >
+                    <Grid Padding="5" HorizontalOptions="StartAndExpand" VerticalOptions="End">
+                        <Label  Text="Should you require any further clarification Please contact at customercare@Fijicare.com.fj"    />
+                    </Grid>
+                </Frame>
+
+
+                <Grid Grid.Row="3" RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00AF7A"   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Padding="0">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Image HorizontalOptions="Center" Grid.Column="0" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Home" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Home"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Home" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="0" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="Home"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+                    <Image HorizontalOptions="Center" Grid.Column="1" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Pharmacy" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="PHARMACY"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="PHARMACY" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="1" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="PHARMACY"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Image HorizontalOptions="Center" Grid.Column="2" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="Ic_Doctor" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="DOCTORS"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="DOCTORS" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="2" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="DOCTORS"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Image HorizontalOptions="Center" Grid.Column="3" 
+                       VerticalOptions="Center" HeightRequest="30"  Margin="0,8,0,0"
+                       WidthRequest="30" Source="IcFEmergency" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="EMERGENCY"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="EMERGENCY" HorizontalOptions="Center" Grid.Row="1" TextColor="White"
+                       Grid.Column="3" VerticalOptions="Start" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FooterCommand}" CommandParameter="EMERGENCY"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+
+
+                </Grid>
+
+
+
+            </Grid>
+
+            <Grid IsVisible="{Binding IsProcessing,Mode=TwoWay}" Grid.Row="0" BackgroundColor="Black" Opacity=".5">
+                <ActivityIndicator  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="50" WidthRequest="50"
+                           IsVisible="{Binding IsProcessing,Mode=TwoWay}"
+                           IsRunning="{Binding IsProcessing,Mode=TwoWay}"
+                           Color="#00AF7A" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
